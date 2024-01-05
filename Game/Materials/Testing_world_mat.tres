@@ -1,9 +1,17 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ciav75toskj4s"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ciav75toskj4s"]
 
+[ext_resource type="Texture2D" uid="uid://dql8l0xph8jk0" path="res://Assets/Prototype textures/Vector/texture_02.svg" id="1_bt7vj"]
 [ext_resource type="Shader" path="res://addons/SunshineVolumetricClouds/WorldShadows/CloudsShadowsExample.gdshader" id="1_jgovf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53woe"]
+blend_mode = 2
+normal_enabled = true
+normal_texture = ExtResource("1_bt7vj")
+uv1_scale = Vector3(500, 500, 500)
 
 [resource]
 render_priority = 0
+next_pass = SubResource("StandardMaterial3D_53woe")
 shader = ExtResource("1_jgovf")
 shader_parameter/ObjectColor = Color(0.603922, 0.603922, 0.603922, 1)
 shader_parameter/CloudDitherPower = 200.0

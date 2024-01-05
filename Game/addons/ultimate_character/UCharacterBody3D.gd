@@ -150,6 +150,8 @@ func _input(event):
 			head_node.rotation.x = clampf(head_node.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 func _physics_process(delta):
+	if Input.is_action_pressed("ui_cancel"):
+		get_tree().quit()
 	if !Engine.is_editor_hint():
 		# Get input direction
 		var input_dir = Input.get_vector(LEFT, RIGHT, FORWARD, BACKWARD)
@@ -251,3 +253,9 @@ func _physics_process(delta):
 		last_velocity = velocity
 		
 		move_and_slide()
+
+func _on_area_3d_body_entered(body):
+	sprint_speed = 400
+	jump_velocity = 200
+	gravity = gravity * 20
+	get_parent().get_node("TestWorld/Area3D").queue_free()

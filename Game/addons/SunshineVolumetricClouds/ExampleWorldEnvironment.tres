@@ -8,10 +8,11 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_d5tle")
 
 [resource]
-background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_wpj7v")
 ambient_light_source = 2
 ambient_light_color = Color(0.298039, 0.384314, 0.458824, 1)
+ambient_light_energy = 0.33
 tonemap_mode = 3
 tonemap_white = 1.5
 ssr_fade_in = 0.15529
@@ -21,8 +22,10 @@ glow_intensity = 6.68
 fog_enabled = true
 fog_light_color = Color(0.815686, 0.843137, 0.866667, 1)
 fog_density = 0.0001
-fog_aerial_perspective = 0.353
-volumetric_fog_density = 0.0585
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_emission = Color(0.694118, 0.694118, 0.694118, 1)
+volumetric_fog_length = 200.0
 adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.7
