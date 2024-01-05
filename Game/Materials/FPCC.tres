@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c5jr8vhjahpy7"]
+
+[ext_resource type="Shader" path="res://addons/SunshineVolumetricClouds/WorldShadows/CloudsShadowsExample.gdshader" id="1_4462v"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4462v")
+shader_parameter/ObjectColor = Color(0.494, 0.573, 0.655, 1)
+shader_parameter/CloudDitherPower = 200.0
+shader_parameter/CloudCutoffAdjust = -0.795
+shader_parameter/CloudDensity = 1.49
+shader_parameter/CloudOpacity = 0.6
+shader_parameter/cloudSoftness = 0.85

@@ -1,0 +1,2 @@
+Testing assets: https://kenney.nl/assets/prototype-textures
+Cloud system: https://godotengine.org/asset-library/asset/2372
