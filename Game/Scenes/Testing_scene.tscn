@@ -1,0 +1,208 @@
+[gd_scene load_steps=13 format=3 uid="uid://cgjqcnh0hocid"]
+
+[ext_resource type="PackedScene" uid="uid://byjn5yc1m1okl" path="res://addons/SunshineVolumetricClouds/CloudsPrefab.tscn" id="1_g5lel"]
+[ext_resource type="Environment" uid="uid://dgwki8y1f6sbc" path="res://addons/SunshineVolumetricClouds/ExampleWorldEnvironment.tres" id="2_q7ds2"]
+[ext_resource type="Material" uid="uid://ciav75toskj4s" path="res://Materials/Testing_world_mat.tres" id="3_77rqi"]
+[ext_resource type="Material" uid="uid://d31uwfruniubs" path="res://Materials/Tunnel_Mat.tres" id="4_rif0d"]
+[ext_resource type="Material" uid="uid://dkvvs8sytqda2" path="res://Materials/Pillars.tres" id="5_n0ysn"]
+[ext_resource type="Script" path="res://addons/ultimate_character/UCharacterBody3D.gd" id="6_bfr73"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_xkrud"]
+density = 0.4019
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ym8im"]
+top_radius = 200.0
+bottom_radius = 200.0
+height = 2000.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qasac"]
+size = Vector3(15.9053, 7.61572, 20.5826)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pushb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8n8h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e4mst"]
+height = 1.3
+
+[node name="World" type="Node3D"]
+
+[node name="Graphics" type="Node" parent="."]
+
+[node name="CloudsSystem" parent="Graphics" node_paths=PackedStringArray("sunLight", "worldEnvironment") instance=ExtResource("1_g5lel")]
+sunLight = NodePath("../Sun")
+worldEnvironment = NodePath("../WorldEnvironment")
+sunColorDefault = Color(0.964706, 0.94902, 0.933333, 1)
+overrideAmbientLight = true
+ambientColorDefault = Color(0.0470588, 0.0745098, 0.0941176, 1)
+fogColorDefault = Color(0.815686, 0.843137, 0.866667, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Graphics"]
+environment = ExtResource("2_q7ds2")
+
+[node name="Sun" type="DirectionalLight3D" parent="Graphics"]
+transform = Transform3D(0.512659, -0.728218, 0.454839, -0.647287, 0.0202411, 0.761978, -0.564093, -0.685046, -0.460989, 0, 275.423, 115.358)
+light_color = Color(0.964706, 0.94902, 0.933333, 1)
+shadow_enabled = true
+directional_shadow_split_1 = 0.005
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 10000.0
+
+[node name="TestWorld" type="Node3D" parent="."]
+
+[node name="Platform" type="CSGBox3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.93396, 0)
+cast_shadow = 0
+use_collision = true
+size = Vector3(30000, 10.8679, 30000)
+material = ExtResource("3_77rqi")
+
+[node name="Tunnel" type="Node3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.56312)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65707, -5.69491)
+light_color = Color(0.54902, 0.176471, 0.803922, 1)
+light_energy = 0.885
+light_indirect_energy = 16.0
+shadow_enabled = true
+omni_range = 49.02
+
+[node name="CSGBox3D" type="CSGBox3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.979, 0)
+use_collision = true
+size = Vector3(13.2594, 4.98291, 1)
+material = ExtResource("4_rif0d")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.81332, -43.0512)
+use_collision = true
+size = Vector3(13.2594, 4.98291, 1)
+material = ExtResource("4_rif0d")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.13278, 2.979, -21.5196)
+use_collision = true
+size = Vector3(44.051, 4.98291, 1)
+material = ExtResource("4_rif0d")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.08972, 2.979, -21.5196)
+use_collision = true
+size = Vector3(44.051, 4.98291, 1)
+material = ExtResource("4_rif0d")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.9728, -21.0065)
+use_collision = true
+size = Vector3(13.2594, 43.053, 1)
+material = ExtResource("4_rif0d")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0261383, 1.06243, -17.8174)
+use_collision = true
+size = Vector3(13.1698, 1, 13.2729)
+material = ExtResource("4_rif0d")
+
+[node name="Label3D" type="Label3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.30094, -5.41918)
+text = "W A S D | To move"
+font_size = 55
+
+[node name="Label3D2" type="Label3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28511, -42.4909)
+text = "CTRL | To slide while sprinting
+CTRL | To crouch"
+font_size = 55
+
+[node name="Label3D4" type="Label3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28511, -30.7307)
+text = "SHIFT | To sprint"
+font_size = 55
+
+[node name="Fog" type="FogVolume" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.51801, -16.912)
+size = Vector3(13.0866, 3.90043, 17.0189)
+material = SubResource("FogMaterial_xkrud")
+
+[node name="Label3D3" type="Label3D" parent="TestWorld/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28511, -10.7693)
+text = "SPACE | To jump"
+font_size = 55
+
+[node name="Pillar" type="MeshInstance3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1318.16, 770.702, -551.57)
+mesh = SubResource("CylinderMesh_ym8im")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_n0ysn")
+
+[node name="Pillar2" type="MeshInstance3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1318.16, 770.702, -2340.57)
+mesh = SubResource("CylinderMesh_ym8im")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_n0ysn")
+
+[node name="Pillar3" type="MeshInstance3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1324.37, 804.236, -4257.17)
+mesh = SubResource("CylinderMesh_ym8im")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_n0ysn")
+
+[node name="Pillar4" type="MeshInstance3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1318.16, 770.702, -6393.57)
+mesh = SubResource("CylinderMesh_ym8im")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_n0ysn")
+
+[node name="Pillar5" type="MeshInstance3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1318.16, 770.702, -8411.57)
+mesh = SubResource("CylinderMesh_ym8im")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_n0ysn")
+
+[node name="Pillar6" type="MeshInstance3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1318.16, 770.702, -10475.6)
+mesh = SubResource("CylinderMesh_ym8im")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("5_n0ysn")
+
+[node name="Label3D3" type="Label3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.46979, -61.5478)
+text = "SHIFT | To super sprint
+SPACE | To super jump
+(only in testing grounds)"
+font_size = 500
+
+[node name="Area3D" type="Area3D" parent="TestWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45606, -56.089)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestWorld/Area3D"]
+shape = SubResource("BoxShape3D_qasac")
+
+[node name="FPCC" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457367, 0)
+script = ExtResource("6_bfr73")
+MOUSE_SENSITIVITY = 0.25
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FPCC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_pushb")
+
+[node name="CollisionShapeNormal" type="CollisionShape3D" parent="FPCC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_u8n8h")
+
+[node name="CollisionShapeCrouch" type="CollisionShape3D" parent="FPCC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+shape = SubResource("CapsuleShape3D_e4mst")
+disabled = true
+
+[node name="Head" type="Node3D" parent="FPCC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera" type="Camera3D" parent="FPCC/Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="FPCC"]
+target_position = Vector3(0, 2, 0)
+
+[connection signal="body_entered" from="TestWorld/Area3D" to="FPCC" method="_on_area_3d_body_entered"]
