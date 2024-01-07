@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceval1fsa0qbe"]
+
+[ext_resource type="Script" path="res://addons/ultimate_character/UCharacterBody3D.gd" id="1_v887a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_44w46"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltebt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8a01u"]
+height = 1.3
+
+[node name="FPCC" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457367, 0)
+script = ExtResource("1_v887a")
+MOUSE_SENSITIVITY = 0.25
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_44w46")
+
+[node name="CollisionShapeNormal" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ltebt")
+
+[node name="CollisionShapeCrouch" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+shape = SubResource("CapsuleShape3D_8a01u")
+disabled = true
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
