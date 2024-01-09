@@ -14,9 +14,14 @@ func _process(delta):
 
 
 func _on_button_button_up():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	var instance = Player.instantiate()
 	get_parent().add_child(instance)
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	var playerInstance = get_parent().get_node("FPCC")
+	var sceneCam = get_parent().get_node("Camera3D")
+	
+	playerInstance.global_rotation = sceneCam.global_rotation
+	playerInstance.global_transform.origin = sceneCam.global_transform.origin
 	self.queue_free()
 	get_parent().get_node("Camera3D").queue_free()
 	get_parent().get_node("Label3D").queue_free()
