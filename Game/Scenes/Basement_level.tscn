@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsdmpdve2blow"]
+
+[ext_resource type="PackedScene" uid="uid://gbi1ce4pte7r" path="res://Models/basement.tscn" id="1_pw4oj"]
+[ext_resource type="PackedScene" uid="uid://ceval1fsa0qbe" path="res://Scenes/FPCC.tscn" id="2_0oufo"]
+
+[node name="BasementLevel" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_pw4oj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.77871, 0, -3.33549)
+
+[node name="FPCC" parent="." instance=ExtResource("2_0oufo")]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -3.94131, 4.76837e-07, 3.38565)

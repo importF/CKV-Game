@@ -4,6 +4,7 @@ class_name UCharacterBody3D
 
 ## A 3D physics body using a revamped template script.
 
+@export var movement_enabled = true
 @export_group("Character Speeds")
 @export var jump_velocity : float = 4.5
 @export var walk_speed : float = 5.0
@@ -82,6 +83,9 @@ func _enter_tree():
 		raycast_node = $RayCast3D
 
 func _ready():
+	get_node("Head/Camera").fov = 90
+	get_node("Control/Genre").visible = true;get_node("Control/Genre2").visible = false
+	get_node("Control/Sun").visible = true;get_node("Control/Moon").visible = false
 	# Only editor: Create child nodes
 	if Engine.is_editor_hint():
 		# TODO: Find a better way to implement this. A workaround to not adding duplicate nodes
@@ -150,11 +154,9 @@ func _input(event):
 			head_node.rotation.x = clampf(head_node.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 func _physics_process(delta):
-	if Input.is_action_pressed("change_to_dark"):
-		get_parent().get_node("Dark").visible = true
-		get_parent().get_node("Env").visible = false
-		get_node("Control/Sun").visible = false; get_node("Control/Moon").visible = true
-		get_node("Control/Genre").visible = false;get_node("Control/Genre2").visible = true
+	if Input.is_action_pressed("`"):
+		velocity = Vector3(0, 0, 0);movement_enabled = false;MOUSE_SENSITIVITY = 0
+		get_node("AnimationPlayer").play("Death")
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	if !Engine.is_editor_hint():
@@ -257,10 +259,33 @@ func _physics_process(delta):
 		
 		last_velocity = velocity
 		
-		move_and_slide()
+		if movement_enabled:
+			move_and_slide()
 
 func _on_area_3d_body_entered(body):
 	sprint_speed = 400
 	jump_velocity = 200
 	gravity = gravity * 20
 	get_parent().get_node("TestWorld/Area3D").queue_free()
+
+
+func _on_area_3d_area_entered(area):
+	if area.name == 'In_main_cabin':
+		var old_mouse_sense = MOUSE_SENSITIVITY
+		velocity = Vector3(0, 0, 0);movement_enabled = false;MOUSE_SENSITIVITY = 0
+		
+		get_node("AnimationPlayer").play("Walking_to_window")
+		await get_tree().create_timer(5).timeout
+		get_parent().get_node("Dark").visible = true
+		get_parent().get_node("Env").visible = false
+		
+		while get_node("AnimationPlayer").is_playing():
+			await get_tree().process_frame
+		movement_enabled = true;MOUSE_SENSITIVITY = old_mouse_sense
+		global_transform.origin = get_node("Head/Camera").global_transform.origin
+		global_rotation = get_node("Head/Camera").global_rotation
+		get_node("AnimationPlayer").play("RESET")
+		get_node("Head/Camera").fov = 120
+		get_node("Control/Genre").visible = false;get_node("Control/Genre2").visible = true
+		get_node("Control/Sun").visible = false;get_node("Control/Moon").visible = true
+		get_node("Area3D").queue_free()

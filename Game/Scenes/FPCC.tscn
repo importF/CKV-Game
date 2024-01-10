@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceval1fsa0qbe"]
+[gd_scene load_steps=14 format=3 uid="uid://ceval1fsa0qbe"]
 
 [ext_resource type="Script" path="res://addons/ultimate_character/UCharacterBody3D.gd" id="1_v887a"]
 [ext_resource type="Texture2D" uid="uid://b4y1ogojybmiv" path="res://Assets/Sun.png" id="2_tc0au"]
@@ -11,13 +11,195 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8a01u"]
 height = 1.3
 
+[sub_resource type="BoxMesh" id="BoxMesh_0gfr1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x1hb"]
+albedo_color = Color(0, 0, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g7cga"]
+size = Vector3(2.03705, 2.88232, 2.76257)
+
+[sub_resource type="Animation" id="Animation_q7k2s"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 154.551),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 154.551),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.50387, -2.36205)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Camera/MeshInstance3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_poanj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m7s7e"]
+resource_name = "Walking_to_window"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.9, 2, 2.2, 2.5, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.393698, -0.804217), Vector3(1.49965, 0.393698, -2.89925), Vector3(1.49965, 0.393698, -4.31413), Vector3(1.49979, 0.393819, -5.2746), Vector3(1.5, 0.394, -5.275), Vector3(1.5, 0.394, -5.275), Vector3(1.5, 0.394, -4.56214)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 2, 2.5, 3, 5, 5.5, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1.41421, 1, 1, 6.49801),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(5.96046e-08, 0, 0), Vector3(5.96046e-08, 0, 0), Vector3(5.96046e-08, 0, 0), Vector3(0.59685, 0, 0), Vector3(0.596903, 0, 0), Vector3(0.596903, 0, 0), Vector3(0, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Genre:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Genre2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Moon:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Sun:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Head/Camera:fov")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5, 5.3, 6),
+"transitions": PackedFloat32Array(1, 2.82843, 1, 1),
+"update": 0,
+"values": [90.0, 90.0, 120.0, 120.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_42qyi"]
+_data = {
+"Death": SubResource("Animation_q7k2s"),
+"RESET": SubResource("Animation_poanj"),
+"Walking_to_window": SubResource("Animation_m7s7e")
+}
+
 [node name="FPCC" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457367, 0)
 script = ExtResource("1_v887a")
 MOUSE_SENSITIVITY = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+cast_shadow = 3
 mesh = SubResource("CapsuleMesh_44w46")
 
 [node name="CollisionShapeNormal" type="CollisionShape3D" parent="."]
@@ -33,6 +215,13 @@ disabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Camera" type="Camera3D" parent="Head"]
+fov = 90.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Camera"]
+transform = Transform3D(4.14322, 0, 0, 0, 2.3472, 0, 0, 0, 1.50693, 0, 0, -1.56976)
+visible = false
+mesh = SubResource("BoxMesh_0gfr1")
+surface_material_override/0 = SubResource("StandardMaterial3D_2x1hb")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
@@ -97,3 +286,16 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "HORROR"
 horizontal_alignment = 1
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0502625, 0.941162, 0.0238647)
+shape = SubResource("BoxShape3D_g7cga")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_42qyi")
+}
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

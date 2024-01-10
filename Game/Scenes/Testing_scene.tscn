@@ -21,6 +21,7 @@ size = Vector3(15.9053, 7.61572, 20.5826)
 [node name="World" type="Node3D"]
 
 [node name="FPCC" parent="." instance=ExtResource("1_m8g6y")]
+movement_enabled = null
 
 [node name="Graphics" type="Node" parent="."]
 
