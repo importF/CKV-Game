@@ -25,6 +25,6 @@ func _on_button_button_up():
 	
 	playerInstance.global_rotation = sceneCam.global_rotation
 	playerInstance.global_transform.origin = sceneCam.global_transform.origin
-	self.queue_free()
 	sceneCam.queue_free()
 	get_parent().get_node("TitleScreenCam/TitleLabel").queue_free()
+	self.queue_free()

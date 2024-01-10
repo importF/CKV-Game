@@ -150,6 +150,11 @@ func _input(event):
 			head_node.rotation.x = clampf(head_node.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 func _physics_process(delta):
+	if Input.is_action_pressed("change_to_dark"):
+		get_parent().get_node("Dark").visible = true
+		get_parent().get_node("Env").visible = false
+		get_node("Control/Sun").visible = false; get_node("Control/Moon").visible = true
+		get_node("Control/Genre").visible = false;get_node("Control/Genre2").visible = true
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 	if !Engine.is_editor_hint():
