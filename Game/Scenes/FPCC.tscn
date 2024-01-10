@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceval1fsa0qbe"]
+[gd_scene load_steps=7 format=3 uid="uid://ceval1fsa0qbe"]
 
 [ext_resource type="Script" path="res://addons/ultimate_character/UCharacterBody3D.gd" id="1_v887a"]
+[ext_resource type="Texture2D" uid="uid://b4y1ogojybmiv" path="res://Assets/Sun.png" id="2_tc0au"]
+[ext_resource type="Texture2D" uid="uid://c8ah5ob7fb0y4" path="res://Assets/Moon.png" id="3_yu3af"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_44w46"]
 
@@ -34,3 +36,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Genre" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.08
+offset_top = 23.0
+offset_bottom = 54.16
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "WALKING SIM"
+horizontal_alignment = 1
+
+[node name="Sun" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0225694
+anchor_top = 0.0354938
+anchor_right = 0.106181
+anchor_bottom = 0.183914
+offset_right = -0.32
+offset_bottom = -0.176003
+texture = ExtResource("2_tc0au")
+metadata/_edit_use_anchors_ = true
+
+[node name="Moon" type="TextureRect" parent="Control"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0225694
+anchor_top = 0.0354938
+anchor_right = 0.106181
+anchor_bottom = 0.183914
+offset_right = -0.32
+offset_bottom = -0.176003
+texture = ExtResource("3_yu3af")
+metadata/_edit_use_anchors_ = true
+
+[node name="Genre2" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.08
+offset_top = 23.0
+offset_bottom = 54.16
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "HORROR"
+horizontal_alignment = 1
