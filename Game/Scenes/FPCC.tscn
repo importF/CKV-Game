@@ -195,6 +195,7 @@ _data = {
 
 [node name="FPCC" type="CharacterBody3D"]
 script = ExtResource("1_v887a")
+walk_speed = 3.0
 MOUSE_SENSITIVITY = 0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
